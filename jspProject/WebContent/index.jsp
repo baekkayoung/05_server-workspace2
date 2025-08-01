@@ -29,8 +29,9 @@
 		  게시판 작성(C) - 첨부파일 업로드 (C)
 	-->
 
-	잘 되냐??
+	<%@ include file ="views/common/menubar.jsp" %>
 	
-	<% JDBCTemplate.getConnection();%>
+	
+	
 </body>
 </html>
