@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!--
-		create, r, update, delete
+		create, Read, update, delete
 		* 회원 서비스
 		  로그인(R) / 회원가입(C) / 마이페이지(R)
 		  정보변경(U) / 회원탈퇴(U)
@@ -30,6 +30,7 @@
 	-->
 
 	<%@ include file ="views/common/menubar.jsp" %>
+	<!-- 공통으로 보여줄 상단의 메뉴바 첨부 -->
 	
 	
 	

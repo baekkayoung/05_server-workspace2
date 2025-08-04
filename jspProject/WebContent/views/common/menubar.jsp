@@ -13,7 +13,6 @@
 	// 서비스 요청 전 menubar.jsp 로딩시 : null
 	// 서비스 성공 후 menubar.jsp 로딩시 : alert로 띄워줄 메시지 문구
 	
-
 %>    
     
 <!DOCTYPE html>
@@ -102,20 +101,17 @@
         	</script>
         </form> 
         
-       
-        
         <% }else{ %>
 
          
 
         <!-- case2. 로그인 후 -->
 	
-		
         <div>
             <b><%=loginUser.getUserName()
             %>님</b>의 방문을 환영합니다 <br><br>
             <div align ="center">
-                <a href="#">마이페이지</a>
+                <a href="<%= contextPath%>/myPage.me">마이페이지</a>
                 <a href="<%= contextPath %>/logout.me">로그아웃</a>
             </div>
         </div> 
