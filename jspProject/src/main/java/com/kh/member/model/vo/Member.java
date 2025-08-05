@@ -21,8 +21,6 @@ public class Member {
 	
 	public Member() {}
 	
-	
-
 
 	public Member(String userId, String userName, String phone, String email, String address, String interest) {
 		super();
