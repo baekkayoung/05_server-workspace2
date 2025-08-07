@@ -15,31 +15,33 @@
         margin-top: 50px;
     }
 
-    #enroll-form table {
+    #update-form table {
         border: 1px solid white;
     }
 
-    #enroll-form input, #enroll-form textarea{
+    #update-form input, #update-form textarea{
         width: 100%;
         box-sizing: border-box;
     }
 
 </style>
 </head>
+
+
 <body>
-	<%@ include file ="../common/menubar.jsp" %>
-    
+	<%@ includ file ="../common/menubar.jsp"%>
+
     <div class="outer" align="center">
         <br>
-        <h2 align = "center">공지사항 작성하기</h2>
+        <h2 align = "center">공지사항 수정하기</h2>
         <br>
 
-        <form action="<%=contextPath %>/insert.no" id="enroll-form" method="post">
+        <form action="<%=contextPath %>/insert.no" id="update-form" method="post">
 
             <table>
                 <tr>
                     <th width="50">제목</th>
-                    <td width="450"><input type="text" name="title" required></td>
+                    <td width="450"><input type="text" name="title" required value="기존의 제목 자리"></td>
                 </tr>
 
                 <tr>
@@ -49,7 +51,7 @@
 
                 <tr>
                     <td colspan="2">
-                        <textarea rows="10" name="content" style="resize: none;" required></textarea>
+                        <textarea rows="10" name="content" style="resize: none;" required</textarea>
                     </td>
 
                 </tr>
@@ -68,7 +70,6 @@
         </form>
 
     </div>
-	
 
 </body>
 </html>

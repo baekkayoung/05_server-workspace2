@@ -16,6 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <style>
     .outer{
@@ -31,9 +32,14 @@
     .list-area{
         border: 1px solid white;
         text-align: center;
-        
+    }
+    
+    .list-area>tbody>tr:hover{
+    	background-color : gray;
+    	cursor:pointer;
     
     }
+    
 
 </style>
 </head>
@@ -100,6 +106,25 @@
 
 
     </div>
+    
+    <script> // 글번호를 따
+    $(function(){ 
+    	  $(".list-area>tbody>tr").click(function(){
+    	    const num = $(this).children().eq(0).text();
+    	    //console.log(num)
+    	    
+    	    // 요청할 url? 키=밸류& 키=벨류
+    	    // 요청시전달값(키=벨류)==쿼리스트링=> get방식
+    	    
+    	    // jsp/detail.no?num=클릭한글번호
+    	    location.href ='<%= contextPath %>/detail.no?num='+ num;		
+    	    
+    	    
+    	    
+    	  });
+    	})
+    
+    </script>
 
 </body>
 </html>
