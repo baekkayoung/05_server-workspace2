@@ -34,6 +34,11 @@
         border:1px solid white;
         text-align: center;
     }
+    
+    .list-area>tbody>tr:hover{
+    	background-color:gray;
+    	cursor: pointer;
+    }
 
 </style>
 </head>
@@ -91,10 +96,17 @@
             </tbody>
         </table>
 
+		<script>
+			$(function(){
+				$(".list-area>tbody>tr").click(function(){
+					location.href='<%=contextPath%>/detail.bo?bno='+ $(this).children().eq(0).text();
+				});
+			})
+		</script>
         <br><br>
 
         <div class="paging-area" align="center">
-        <% if(currentPage != 1) {%>
+        <% if(currentPage != 1){%>
 		<!-- 이전 페이지 버튼 -->
 		<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%= currentPage - 1 %>'">&lt;</button>
 		<%} %>
