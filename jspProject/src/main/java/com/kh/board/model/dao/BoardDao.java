@@ -337,5 +337,122 @@ public class BoardDao {
 			close(pstmt);
 		} return result;
 	}
+	
+
+
+
+	public int insertThBoard(Connection conn, Board b) {
+		int result = 0 ;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertThBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+		
+			
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, Integer.parseInt(b.getBoardWriter()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+
+
+
+	public int insertAttachmentList(Connection conn, ArrayList<Attachment> list) {
+		int result = 0 ;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachmentList");
+		
+		try {
+			
+			for(Attachment at : list ) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, at.getOriginName());
+				pstmt.setString(2, at.getChangeName());
+				pstmt.setString(3, at.getFilePath());
+				pstmt.setInt(4, at.getFileLevel());
+				
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+
+
+	public ArrayList<Board> selectThumbnailList(Connection conn) {
+		ArrayList<Board> list = new ArrayList<Board>();
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectThumbnailList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+		
+			// 반복문 돌려가면서
+			while(rset.next()) {
+				Board b = new Board();
+				b.setBoardNo(rset.getInt("board_no"));
+				b.setBoardTitle(rset.getString("board_title"));
+				b.setCount(rset.getInt("count"));
+				b.setTitleImg(rset.getString("titleImage"));
+				list.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+			
+		} return list ;
+		
+		
+	}
+
+
+	public Board selectThumbnaildetailView(Connection conn) {
+		
+		Board b = new Board();
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectThumbnaildetailView");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b = new Board(rset.getString("board_title"),
+						rset.getString("board_writer"),
+						rset.getString("create_date"),
+						rset.getString("board_content"),
+						rset.getString("titleImage"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return b;
+		
+	}
+
+
+	
 
 }

@@ -12,6 +12,19 @@ public class Board {
 	private String create_date; // 작성시 작성일 | 조회시 ?
 	private String status; 
 	
+	
+	
+	
+	
+	private String titleImg; //대표 이미지를 경로를 보관하기 위한 
+	public String getTitleImg() {
+		return titleImg;
+	}
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
+	}
+
+	
 	public Board() {}
 
 	public Board(int boardNo, int boardType, String category, String boardTitle, String boardContent,
@@ -29,7 +42,17 @@ public class Board {
 	}
 	
 	
-
+	// 혼자
+	public Board(String boardTitle, String boardContent, String boardWriter, String create_date, String titleImg) {
+		super();
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.create_date = create_date;
+		this.titleImg = titleImg;
+	}
+	
+	
 	public Board(int boardNo, String category, String boardTitle, String boardContent, String boardWriter, String create_date) {
 		super();
 		this.boardNo = boardNo;
