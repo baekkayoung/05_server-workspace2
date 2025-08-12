@@ -37,7 +37,7 @@
                 <tr>
                     <td>* 아이디</td>
                     <td><input type="text" name="userId" maxlength="12" required></td>
-                    <td><button type="button">중복확인</button></td>
+                    <td><button type="button" onclick="idCheck()">중복확인</button></td>
                 </tr>
                 <tr>
                     <td>* 비밀번호</td>
@@ -96,20 +96,55 @@
             <br><br>
 
             <div align="center">
-                <button type="submit">회원가입</button>
+                <button type="submit" disabled>회원가입</button>
                 <button type="reset">초기화</button>
             </div>
 
             <br>
-
+		<script>
+    	function idCheck(){
+    		// 중복확인 버튼 클릭시 사용자가 입력한 아이디값을 넘겨서 조회요청(존재하는지 안하는지) => 응답데이터 돌려받기
+    		// 1) 사용 불가능일 경우 => alert로 메세지 출력, 다시 입력할 수 있도록 유도
+    		// 2) 사용 가능일 경우 => 진짜 사용할건지 의사를 물어볼거임
+    		// 					> 사용하겠다는 경우 => 더이상 아이디 수정 못하게끔, 회원가입 버튼 활성화
+    		//					> 사용안하겠다는경우 => 다시 입력할 수 있도록 유도
+    		
+    		// 아이디 입력하는 input 요소 객체
+    		const $idInput =$("#enroll-form input[name=userId]");
+			
+    		$.ajax({
+    			url:"idCheck.me",
+    			data:{checkId:$idInput.val()},
+    			success:function(result){
+    			
+    				if(result == 'NNNNN'){ // 사용 불가능일 경우
+    					alert("이미 존재하거나 탈퇴한 회원의 아이디 입니다.");
+    					$idInput.focus();
+    				}else{ // 사용 가능할 경우
+    					if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){ // 네
+    						$("#enroll-form : submit").removeAttr("disabled");
+    						$idInput.attr("readonly", true);
+    					}else{ // 아니오 = > 다시 입력
+    						$idInput.focus();
+    					}
+    					
+    				}
+    				
+    			},
+    			error:function(){
+    				console.log("아이디 중복체크용 ajax 통신실패")
+    			},
+    				
+    			
+    		})
+		}
+    </script>
         </form>
-
-
-
-
-
-
+        
     </div>
+    
+    
+    
 
 </body>
 </html>

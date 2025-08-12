@@ -30,13 +30,13 @@ public class ThumbnailDetailViewContrioller extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Board b = new BoardService().selectThumbnaildetailView();
-		request.setAttribute("b", b);
-		
-		request.getRequestDispatcher("views/board/thumbnailListView.jsp").forward(request, response);
-	}
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		
+//		Board b = new BoardService().selectThumbnaildetailView();
+//		request.setAttribute("b", b);
+//		
+//		request.getRequestDispatcher("views/board/thumbnailListView.jsp").forward(request, response);
+//	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

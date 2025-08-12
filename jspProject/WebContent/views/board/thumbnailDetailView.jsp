@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.Attachment"%>
 <%@page import="com.kh.board.model.vo.Board"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +6,7 @@
     
 <%
 	Board b = (Board)request.getAttribute("b");
+	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -46,7 +48,7 @@
             <td>작성자</td>
             <td><%=b.getBoardWriter() %></td>
             <td>작성일</td>
-            <td><%=b.getCreate_date() %></td>
+            <td><%=b.getCreate_date()%> </td>
 
         </tr>
         <tr>
@@ -59,7 +61,7 @@
             <td>대표사진</td>
             <td colspan="3">
                 <div>
-                    <img src="<%=b.getTitleImg()%>" width="500px" height="300px">
+                    <img src="<%=contextPath %>/<%=list.get(0).getFilePath() + list.get(0).getChangeName() %>" width="500px" height="300px">
                 </div>
             </td>
         </tr>
@@ -67,13 +69,18 @@
             <td>상세사진</td>
             <td colspan="3">
                 <div>
-                    <img src="<%=b.getTitleImg()%>" width="200px" height="150px">
-                    <img src="<%=b.getTitleImg()%>" width="200px" height="150px">
-                    <img src="<%=b.getTitleImg()%>" width="200px" height="150px">
+                	<% for( int i=1; i<list.size(); i++) {%>
+                    <img src="<%=contextPath %>/<%= list.get(i).getFilePath() + list.get(i).getChangeName()%>" width="200px" height="150px">
+                    <% }%>
                 </div>
             </td>
         </tr>
     </table>
+    <br>
+    <div align="center">
+    	<a href="" class="btn btn-sm btn-secondary">목록가기</a>
+    </div>
+    
    </div>
 
 </body>

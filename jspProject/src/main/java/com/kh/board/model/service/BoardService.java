@@ -137,12 +137,20 @@ public class BoardService {
 		return list;
 	}
 
-	public Board selectThumbnaildetailView() {
+//	public Board selectThumbnaildetailView() {
+//		Connection conn = getConnection();
+//		Board b = new BoardDao().selectThumbnaildetailView(conn);
+//		
+//		close(conn);
+//		return b;
+//	}
+
+	public ArrayList<Attachment> selectAttachmentList(int boardNo) {
 		Connection conn = getConnection();
-		Board b = new BoardDao().selectThumbnaildetailView(conn);
-		
+		ArrayList<Attachment> list = new BoardDao().selectAttachmentList(conn, boardNo);
 		close(conn);
-		return b;
+		return list;
+		
 	} 
 	
 	

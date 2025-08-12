@@ -35,6 +35,12 @@
         margin: 13px;
 
     }
+    
+    .thumbnail:hover{
+    	cursor : pointer;
+    	opacity : 0.7;
+    
+    }
 
 
 </style>
@@ -52,18 +58,16 @@
 	<% if (loginUser !=null){%>
     <!-- 로그인한 회원만 보여지도록 -->
     <div align="right" style="width: 860px;">
-        <a href="<%= contextPath%>/enrollForm.th" class="btn btn-sm btn-secondary">글작성</a>
+        <a href="<%=contextPath%>/enrollForm.th" class="btn btn-sm btn-secondary">글작성</a>
     </div>
     <%} %>
 
     <div class="list-area">
-
-
 <% for(Board b : list) { %>
     <!-- 썸네일 한개-->
     <div class="thumbnail" align="center">
-        <img src="<%=contextPath %>/<%= b.getTitleImg()%>" width="200" height="150"
-        style="cursor:pointer" onclick="location.href='<%=contextPath %>/detailView.th?bno=<%=b.getBoardNo()%>'">
+    	<input type= "hidden" value="<%=b.getBoardNo()%>">
+        <img src="<%=contextPath %>/<%= b.getTitleImg()%>" width="200" height="150">
         <p>
             No.<%=b.getBoardNo()%> <%=b.getBoardTitle()%><br>
             조회수 <%= b.getCount() %>
@@ -71,6 +75,14 @@
     	</div>
 	<%} %>
 	</div>
+	
+	<script>
+		$(function(){
+			$(".thumbnail").click(function(){
+				location.href="<%=contextPath %>/detailV.th?bno=" + $(this).children("input").val();
+			});
+		})
+	</script>
 
 </body>
 </html>

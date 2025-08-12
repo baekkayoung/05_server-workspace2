@@ -1,4 +1,4 @@
-package com.kh.board.controller;
+package com.kh.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class thumbnailEnrollFormController
+ * Servlet implementation class JqAjaxController1
  */
-@WebServlet("/enrollForm.th")
-public class ThumbnailEnrollFormController extends HttpServlet {
+@WebServlet("/jqAjax1.do")
+public class JqAjaxController1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ThumbnailEnrollFormController() {
+    public JqAjaxController1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,14 @@ public class ThumbnailEnrollFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/board/thumbnailEnrollForm.jsp").forward(request, response);
+		String str = request.getParameter("input");
 		
+		// 요청 처리 다 했다는 가정하에 응답할 데이터 (문자열)
+		String responseData = "입력된 값 - " + str + ", 길이 - " + str.length();
+		
+		// 응답 데이터 돌려주기
+		response.setContentType("text/html; charset=utf-8"); // 한글이 있을 경우
+		response.getWriter().print(responseData); // result
 	}
 
 	/**

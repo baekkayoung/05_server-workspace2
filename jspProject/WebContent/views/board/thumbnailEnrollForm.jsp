@@ -79,10 +79,7 @@
             	function chooseFile(num){
             		$("#file"+num).click();
             	}
-            
-            
-            
-            
+ 
                 function loadImg(inputFile, num){
                     // inputFile : 현재 변화가 생긴 input type ="file" 요소 객체
                     // num : 몇번째 input 요소인지 확인 후 해당 그 영역에 미리보기 하기 위해 전달받는 숫자
