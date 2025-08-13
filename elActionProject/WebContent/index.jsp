@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-되냐?
-
+	<h1>* EL (Expression Language) 표현 언어</h1>
+	<p>
+		기존에 사용했던 표현식(출력식)%lt;%= name %&ge;와 같이 <br>
+		JSP 상에 표현하고자 하는 값을 \${ name }의 형식으로 표현해서 작성하는 것
+	</p>
+	
+	<a href="el.do">01_EL의 기본 구문</a>
+	
 </body>
 </html>

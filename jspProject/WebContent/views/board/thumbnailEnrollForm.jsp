@@ -99,6 +99,16 @@
                         // 파일을 읽어들이기가 완료됐을 때 실행할 함수를 정의해두기
                         reader.onload = function(e){
                             // e.target.result => 읽어들인 파일의 고유한 url
+                            
+                            /*
+                            reader.onload는 **파일 읽기가 완료되었을 때 실행되는 이벤트 핸들러(함수)예요.
+							브라우저가 파일 읽기를 끝내고 나면,
+							이 함수 function(e)를 호출하면서
+							자동으로 이벤트 정보가 담긴 객체를 e라는 이름으로 넘겨줘요.
+							
+							그래서 e는 우리가 직접 만들거나 넘긴 게 아니고,
+							브라우저가 알아서 넣어주는 '파일 읽기 완료 이벤트 정보' 객체인 거예요.
+                            */
                             switch(num){
                                 case 1 : $("#titleImg").attr("src", e.target.result); break;
                                 case 2 : $("#contentImg1").attr("src", e.target.result); break;
