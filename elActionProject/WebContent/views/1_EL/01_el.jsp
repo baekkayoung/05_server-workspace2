@@ -52,6 +52,32 @@
 			해당 Person 객체의 필드에 담긴 값을 추출력하고자 한다면 .필드명 => getter메소드 알아서 접근
 			=> 내부적으로 getter 메소드 찾아서 실행됨 즉, getter 메소드는 항상 필수적으로 만들어둬야함!
 		 -->
+		 
+		수강생정보
+		<ul>
+			<li>이름 : ${student.name} </li>
+			<li>나이 : ${student.age}</li>
+			<li>성별 : ${student.gender}</li>
+		</ul>
+		
+		<h3>3. 단, EL 사용시 내장객체들에 저장된 키값이 동일할 경우</h3>
+		scope값 : ${ scope } <br> 
+		<!-- EL은 공유범위가 제일 작은 Scope에서부터 해당 키값을 검색함
+			page => request => session => application
+			
+			만일, 모든 영역에서 못 찾을 경우? => 아무것도 출력안됨(오류 안 남)
+		 -->
+		 
+		 test값 : ${ test } <br>
+		 
+		 <h3>4. 직접 Scope를 지정해서 접근하기</h3>
+		 <%
+		 	// pageScope에 담기
+		 	pageContext.setAttribute("scope", "page");
+		 	
+		 %>
+		 
+		 pageScope에 담긴 값 : ${ scope } 또는 $ {pageScope.scope} 
 	
 	</p>
 		
