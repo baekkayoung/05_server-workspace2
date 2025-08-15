@@ -30,6 +30,7 @@ public class NoticeDao {
 	public ArrayList<Notice> selectNoticeList(Connection conn) {
 		// select (여러행) => ResultSet => ArrayList<Notice>
 		
+		
 		ArrayList<Notice> list = new ArrayList<Notice>();
 		
 		PreparedStatement pstmt = null;

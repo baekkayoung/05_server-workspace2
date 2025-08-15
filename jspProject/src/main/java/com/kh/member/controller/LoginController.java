@@ -40,8 +40,6 @@ public class LoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		
-		
 		// 3) 요청처리(db에 sql문 실행)
 		//    해당 요청을 처리하는 서비스 클래스의 메소드 호출 및 결과 받기
 		Member loginUser = new MemberService().loginMember(userId, userPwd);
@@ -71,8 +69,7 @@ public class LoginController extends HttpServlet {
 			view.forward(request, response); 
 			
 		}else {
-			// 조회결과 있음 == 로그인 성공!! => 메인페이지(index.jsp) 응답
-			
+			// 조회결과 있음 == 로그인 성공!! => 메인페이지(index.jsp) 응답		
 			// 로그인한 회원정보(loginUser)를 session에 담아버리기(왜? 여기저기서 갖다 쓰도록)
 			
 //			session.

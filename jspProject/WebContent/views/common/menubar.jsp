@@ -6,7 +6,7 @@
 	String contextPath = request.getContextPath(); // "/jsp"
 	
 	Member loginUser = (Member)session.getAttribute("loginUser");
-	// 로그인 시도 전 menuber.jsp : null
+	// 로그인 시도 전 menuber.jsp 로딩시 : null
 	// 로그인 성공 후 menubar.jsp 로딩시 : 로그인 성공한 회원의 정보가 담겨있는 Member 객체
 
 	String alertMsg = (String)session.getAttribute("alertMsg"); 
@@ -67,8 +67,8 @@
 </head>
 <body>
 
-	 <%if(alertMsg != null){%>
-		<script>
+	<%if(alertMsg != null){%>
+	<script>
 		alert("<%= alertMsg %>");
 	</script>
 		<% session.removeAttribute("alertMsg"); %>
@@ -106,7 +106,6 @@
         		
         		// 단순한 페이지 요청도 서블릿 호출해서 거쳐갈 것! (url에는 서블릿 맵핑값만 노출!)
         		location.href = "<%= contextPath %>/enrollForm.me";
-        		
         	}
         	</script>
         </form> 
@@ -125,7 +124,7 @@
                 <a href="<%= contextPath %>/logout.me">로그아웃</a>
             </div>
         </div> 
-    <% }%>
+    <%}%>
     </div>
 
     <br clear="both">
