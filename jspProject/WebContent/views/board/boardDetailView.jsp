@@ -21,7 +21,7 @@
         background-color: black;
         color: white;
         width: 1000px;
-        height: 550px;
+        height: auto;
         margin: auto;
         margin-top: 50px;
         
@@ -84,6 +84,98 @@
         <% } %>
 
     </div>
+
+    <br>
+        <div id="reply-area">
+
+            <table border="1" align="center">
+                <thead>
+                    <tr>
+                    <th>댓글작성</th>
+                   	<%if(loginUser != null){ %>
+                    <td>
+                        <textarea id="replyContent" rows="3" cols="50" style="resize: none;"></textarea>
+                    </td>
+                    <td><button onclick="insertReply()">댓글등록</button></td>
+                     <%} else{%>
+                    <td>
+                    <textarea rows="3" cols="50" style="resize: none;" readonly>로그인 후 이용가능한 서비스입니다.</textarea>
+                    </td>
+                    <td><button disabled>댓글등록</button><td>
+                     <%} %>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    
+                </tbody>
+            </table>
+            
+            <script>
+            	$(function(){
+            		selectReplyList();
+            		
+            		setInterval(selectReplyList, 1000); // 1초
+            	})
+            	
+            	// ajax로 댓글 작성용 userNologinUser.getUserNo()면 로그인 안하면 어려움...
+            	function insertReply(){
+            		$.ajax({
+            			url:"rinsert.bo",
+            			data:{
+            				content: $("#replyContent").val(),
+            				bno:<%= b.getBoardNo()%>,
+            			},
+            			type:"post",
+            			success:function(result){
+            				if(result > 0 ){ // 댓글 작성이 성공하면 새로 갱신된 댓글 리스트 조회
+            					selectReplyList();
+            					$("#replyContent").val(""); // textarea 초기화
+            				}
+            				
+            				
+            			}, error:function(){
+            				console.log("댓글작성용 ajax 통신 실패!");
+            			}
+            			
+            		});
+            	}
+            	
+            	
+            	
+            	
+            	
+            	function selectReplyList(){ //여러 형태로 해야하니까 객체형태로 
+            		$.ajax({
+            			url:"rlist.bo",
+            			data:{bno:<%=b.getBoardNo()%>},
+            			success : function(list){
+            				
+            				console.log(list);
+            				
+            				let result ="";
+            				for(let i=0; i<list.length; i++){
+            					result += "<tr>"
+            							+ "<td>"+ list[i].replyWriter + "</td>"
+            							+ "<td>"+ list[i].replyContent + "</td>"
+            							+ "<td>"+ list[i].createDate + "</td>"
+            							+"</tr>"
+            				}
+            				$("#reply-area tbody").html(result);
+            				
+            			}, error:function(){
+            				console.log("댓글 목록 조회용 ajax 통신 실패");
+            				
+            			}
+            		});
+            		
+            	}
+            </script>
+
+        </div>
+        
+        <br><br><br><br><br><br><br>
+        
 
 </div>
 
